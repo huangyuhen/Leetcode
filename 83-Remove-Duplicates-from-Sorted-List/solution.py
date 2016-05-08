@@ -5,22 +5,22 @@
 #         self.next = None
 
 class Solution(object):
-    def removeDup(self, head):
-        if head is None or head.next is None:
-            return head
-        if head.val == head.next.val:
-            head.next = head.next.next
-            return self.deleteDuplicates(head)
-        else:
-            head.next = self.deleteDuplicates(head.next)
     def deleteDuplicates(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
         """
-        if head is None:
-            return None
-        self.removeDup(head)
+        if head is None or head.next is None:
+            return head
+        previous = head
+        current = head.next
+        while current is not None:
+            if previous.val != current.val:
+                previous = current
+                current = current.next
+            else:
+                current = current.next
+                previous.next = current
         return head
         
 
