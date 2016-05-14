@@ -5,9 +5,9 @@ class TicTacToe(object):
         Initialize your data structure here.
         :type n: int
         """
-        self.col = [0 for i in xrange(n)]
-        self.row = [0 for i in xrange(n)]
-        self.diag = [0, 0]
+        self.col = [[0,0] for i in xrange(n)]
+        self.row = [[0,0] for i in xrange(n)]
+        self.diag = [[0, 0] for i in xrange(2)]
         self.diagCord = []
         self.win = n
         temp = n-1
@@ -30,25 +30,17 @@ class TicTacToe(object):
         :type player: int
         :rtype: int
         """
-        change = 0
-        if player == 1:
-            change = 1
-        elif player == 2:
-            change = -1
-        self.col[col] += change
-        if self.col[col] == self.win or self.col[col] == -self.win:
-            return [1,2][self.col[col] == -self.win]
-        self.row[row] += change
-        if self.row[row] == self.win or self.row[row] == -self.win:
-            return [1,2][self.row[row] == -self.win]
+        change = 1
+        user = player - 1
+        self.col[col][user] += change
+        self.row[row][user] += change
         if row == col:
-            self.diag[0] += change
-        if self.diag[0] == self.win or self.diag[0] == -self.win:
-            return [1,2][self.diag[0] == -self.win]
+            self.diag[0][user] += change
         if [row, col] in self.diagCord:
-            self.diag[1] += change
-        if self.diag[1] == self.win or self.diag[1] == -self.win:
-            return[1,2][self.diag[1] == -self.win]
+            self.diag[1][user] += change
+        if any([self.col[col][user] == self.win or self.row[row][user] == self.win 
+                or self.diag[0][user] == self.win or self.diag[1][user] == self.win]):
+            return player
         return 0
 
 
