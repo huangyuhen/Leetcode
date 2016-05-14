@@ -15,3 +15,10 @@ class Solution(object):
             else:
                 result[1] ^= i
         return result
+        
+#diff' + 1 = -diff
+#diff & ~(diff-1) = diff & -diff
+
+# 00010 (diff)
+# 11110 (~(diff - 1)
+#=00010
