@@ -29,3 +29,17 @@ class Solution(object):
         if carry == 1:
             cur.next = ListNode(carry)
         return dummy.next
+        
+#if __name__ == "__main__":
+    # a = ListNode(2)
+    # b = ListNode(4)
+    # c = ListNode(3)
+    # d = ListNode(5)
+    # e = ListNode(6)
+    # f = ListNode(4)
+
+    # i = ListNode(5)
+    # k = ListNode(5)
+    # a.next, b.next = b, c
+    # d.next, e.next = e, f
+    # print Solution().addTwoNumbers(i, k)
