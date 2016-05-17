@@ -4,17 +4,11 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        longest, visited = [], []
-        for char in s:
-            if char not in visited:
-                visited.append(char)
-            else:
-                if len(longest) <= len(visited):
-                    longest = visited
-                    visited = longest[longest.index(char) + 1:]
-                else:
-                    visited = visited[visited.index(char)+1:]
-                visited.append(char)
-        if len(longest) < len(visited):
-            longest = visited
-        return len(longest)
+        hashmap = {}
+        count, leftp = 0, 0
+        for i in xrange(len(s)):
+            if s[i] in hashmap:
+                count = max(count, i - leftp)
+                leftp = max(leftp, hashmap[s[i]] + 1)
+            hashmap[s[i]] = i
+        return max(count, len(s) - leftp)
