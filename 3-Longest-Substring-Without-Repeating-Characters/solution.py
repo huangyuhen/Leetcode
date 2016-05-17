@@ -4,18 +4,14 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        longest, visited = [], []
-        for char in s:
-            if char not in visited:
-                visited.append(char)
+        longest, start, visited = 0, 0, [False for _ in xrange(256)]
+        for i, char in enumerate(s):
+            if visited[ord(char)]:
+                while char != s[start]:
+                    visited[ord(s[start])] = False
+                    start += 1
+                start += 1
             else:
-                if len(longest) <= len(visited):
-                    longest = visited
-                    visited = longest[longest.index(char) + 1:]
-                else:
-                    visited = visited[visited.index(char)+1:]
-                visited.append(char)
-        if len(longest) < len(visited):
-            longest = visited
-        #return "".join(longest)
-        return len(longest)
+                visited[ord(char)] = True
+            longest = max(longest, i - start + 1)
+        return longest
