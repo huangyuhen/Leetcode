@@ -7,6 +7,7 @@ class Solution(object):
         sortNums = sorted(nums)
         result = []
         for i in xrange(len(nums)-2):
+            if i == 0 or sortNums[i] != sortNums[i - 1]:
                 j,  k= i + 1, len(nums) - 1
                 while j < k:
                     temp = sortNums[i] + sortNums[j] + sortNums[k]
@@ -15,8 +16,7 @@ class Solution(object):
                     elif temp < 0:
                         j += 1
                     else:
-                        if [sortNums[i], sortNums[j], sortNums[k]] not in result:
-                            result.append([sortNums[i], sortNums[j], sortNums[k]])
+                        result.append([sortNums[i], sortNums[j], sortNums[k]])
                         j, k = j + 1, k - 1
                         while j < k and sortNums[j] == sortNums[j - 1]:
                             j += 1
