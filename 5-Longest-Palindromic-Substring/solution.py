@@ -16,5 +16,4 @@ class Solution(object):
                 end += 1
             if (end - start) + 1 > maxl[0]:
                 maxl = [end - start+1, start, end+1]
-                continue
         return s[maxl[1]: maxl[2]]
