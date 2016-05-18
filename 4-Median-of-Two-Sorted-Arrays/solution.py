@@ -7,14 +7,14 @@ class Solution(object):
         """
         n = len(nums1) + len(nums2)
         if n % 2 == 1:
-            return self.findKthMedian(nums1, nums2, n/2 + 1)
+            return self.findKth(nums1, nums2, n/2 + 1)
         else:
-            smaller = self.findKthMedian(nums1, nums2, n/2)
-            larger = self.findKthMedian(nums1, nums2, n/2 + 1)
+            smaller = self.findKth(nums1, nums2, n/2)
+            larger = self.findKth(nums1, nums2, n/2 + 1)
             return (smaller + larger) / 2.0
     
     
-    def findKthMedian(self, A, B, k):
+    def findKth(self, A, B, k):
         if len(A) == 0:
             return B[k - 1]
         if len(B) == 0:
@@ -24,6 +24,6 @@ class Solution(object):
         a = A[k/2 - 1] if len(A) >= k / 2 else None
         b = B[k/2 - 1] if len(B) >= k / 2 else None
         if b is None or (a is not None and a < b):
-            return self.findKthMedian(A[k/2:], B, k - k/2)
-        return self.findKthMedian(A, B[k/2:], k - k/2)
+            return self.findKth(A[k/2:], B, k - k/2)
+        return self.findKth(A, B[k/2:], k - k/2)
         
