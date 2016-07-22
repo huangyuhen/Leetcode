@@ -18,15 +18,15 @@ class Solution(object):
             copied.next = current.next
             current.next = copied
             current = copied.next
-        
-        # update random node in copied list
+
         current = head
+
         while current:
             if current.random:
                 current.next.random = current.random.next
             current = current.next.next
-        
-        # split copied list from combined one
+
+
         dummy = RandomListNode(0)
         copied_current, current = dummy, head
         while current:
