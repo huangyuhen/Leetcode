@@ -28,9 +28,10 @@ class Solution(object):
 
 
         dummy = RandomListNode(0)
-        copied_current, current = dummy, head
+        current, copied_current = head, dummy
         while current:
             copied_current.next = current.next
             current.next = current.next.next
             copied_current, current = copied_current.next, current.next
+        
         return dummy.next
