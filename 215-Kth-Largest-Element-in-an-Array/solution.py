@@ -1,26 +1,29 @@
 class Solution(object):
-    # O(n) time, quick selection
     def findKthLargest(self, nums, k):
         # convert the kth largest to smallest
-        return self.findKthSmallest(nums, len(nums)+1-k)
-        
-    def findKthSmallest(self, nums, k):
-        if nums:
-            pos = self.partition(nums, 0, len(nums)-1)
-            if k > pos+1:
-                return self.findKthSmallest(nums[pos+1:], k-pos-1)
-            elif k < pos+1:
-                return self.findKthSmallest(nums[:pos], k)
+        temp = len(nums) - 1 - k
+        return self.findKthSmallest(nums, 0, len(nums) - 1, len(nums) - k)
+
+    def findKthSmallest(self, nums, start, end, k):
+        while start < end:
+            pos = self.partition(nums, start, end)
+            if pos < k:
+                start = pos + 1
+            elif pos > k:
+                end = pos - 1
             else:
-                return nums[pos]
-     
-    # choose the right-most element as pivot   
-    def partition(self, nums, l, r):
-        low = l
-        while l < r:
-            if nums[l] < nums[r]:
-                nums[l], nums[low] = nums[low], nums[l]
-                low += 1
-            l += 1
-        nums[low], nums[r] = nums[r], nums[low]
-        return low
+                break
+        return nums[k]
+
+    def partition(self, nums, start, end):
+        p, i, j = start, start, end
+        while i < j:
+            while nums[i] <= nums[p] and i < end:
+                i += 1
+            while nums[j] >= nums[p] and j > start:
+                j -= 1
+            if i >= j:
+                break
+            nums[i], nums[j] = nums[j], nums[i]
+        nums[start], nums[j] = nums[j], nums[start]
+        return j
