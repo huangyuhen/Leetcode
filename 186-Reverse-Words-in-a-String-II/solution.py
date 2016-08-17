@@ -5,11 +5,9 @@ class Solution(object):
         :rtype: nothing
         """
         s.reverse()
-
         index = 0
         for i in range(len(s)):
             if s[i] == " ":
-                s[index: i] = reversed(s[index: i])
-                index = i + 1
-
+                s[index:i] = reversed(s[index:i])
+                index =  i + 1
         s[index: ] = reversed(s[index: ])
