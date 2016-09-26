@@ -4,7 +4,6 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-import Queue
 
 class Solution(object):
     def closestValue(self, root, target):
@@ -13,24 +12,14 @@ class Solution(object):
         :type target: float
         :rtype: int
         """
-        queue = Queue.Queue()
-        curLevel = 1
-        nextLevel = 0
-        minValue = sys.maxint
-        queue.put(root)
-        while not queue.empty():
-            node = queue.get()
-            minValue = [minValue, node.val][abs(target - float(node.val)) < abs(target - float(minValue))]
-            curLevel -= 1
-            if node.left is not None:
-                queue.put(node.left)
-                nextLevel += 1
-            if node.right is not None:
-                queue.put(node.right)
-                nextLevel += 1
-            if curLevel == 0:
-                curLevel = nextLevel
-                nextLevel = 0
-        return minValue
+        ret = root.val
+        while root:
+            if abs(target - root.val) < abs(target - ret):
+                ret = root.val
+            if root.val > target:
+                root = root.left
+            else:
+                root = root.right
+        return ret
         
         
