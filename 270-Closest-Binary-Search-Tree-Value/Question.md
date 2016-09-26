@@ -11,9 +11,9 @@ Given a non-empty binary search tree and a target value, find the value in the B
 
 <div>
 
-<div id="company_tags" class="btn btn-xs btn-warning">Show Company Tags</div>
+<div id="company_tags" class="btn btn-xs btn-warning">Hide Company Tags</div>
 
-<span class="hidebutton">[Microsoft](/company/microsoft/) [Google](/company/google/) [Snapchat](/company/snapchat/)</span></div>
+<span class="hidebutton" style="display: inline;">[Microsoft](/company/microsoft/) [Google](/company/google/) [Snapchat](/company/snapchat/)</span></div>
 
 <div>
 
