@@ -16,10 +16,8 @@ class Solution(object):
         while root:
             if abs(target - root.val) < abs(target - ret):
                 ret = root.val
-            if root.val > target:
-                root = root.left
-            else:
+            if root.val < target:
                 root = root.right
+            else:
+                root = root.left
         return ret
-        
-        
